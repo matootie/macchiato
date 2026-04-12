@@ -24,7 +24,7 @@ APP_NAME="Macchiato"
 PROJECT="$PROJECT_DIR/$APP_NAME.xcodeproj"
 
 # Resolve signing identity
-IDENTITY=$(security find-identity -v -p codesigning | grep "Developer ID Application" | head -1 | sed 's/.*"\(.*\)".*/\1/')
+IDENTITY=$(security find-identity -v -p codesigning | grep "Developer ID Application" | head -1 | sed 's/.*"\(.*\)".*/\1/' || true)
 if [ -z "$IDENTITY" ]; then
     echo "Error: No 'Developer ID Application' certificate found."
     echo "Create one at https://developer.apple.com/account/resources/certificates/add"
