@@ -28,6 +28,11 @@ struct MacchiatoApp: App {
 
             Divider()
 
+            Button("About Macchiato") {
+                NSApplication.shared.activate()
+                NSApplication.shared.orderFrontStandardAboutPanel()
+            }
+
             Button("Quit Macchiato") {
                 NSApplication.shared.terminate(nil)
             }
