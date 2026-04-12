@@ -9,17 +9,39 @@
 /* Begin PBXBuildFile section */
 		BB0000000000000000000001 /* MacchiatoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000001 /* MacchiatoApp.swift */; };
 		BB0000000000000000000002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000002 /* Assets.xcassets */; };
+		BB0000000000000000000003 /* CaffeinateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000005 /* CaffeinateService.swift */; };
+		BB0000000000000000000004 /* CaffeinateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000006 /* CaffeinateServiceTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F00000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF0000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE0000000000000000000001;
+			remoteInfo = Macchiato;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AA0000000000000000000001 /* MacchiatoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacchiatoApp.swift; sourceTree = "<group>"; };
 		AA0000000000000000000002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA0000000000000000000003 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA0000000000000000000004 /* Macchiato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Macchiato.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000005 /* CaffeinateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinateService.swift; sourceTree = "<group>"; };
+		AA0000000000000000000006 /* CaffeinateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinateServiceTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000007 /* MacchiatoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacchiatoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DD0000000000000000000003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD0000000000000000000006 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				CC0000000000000000000002 /* Macchiato */,
+				CC0000000000000000000004 /* MacchiatoTests */,
 				CC0000000000000000000003 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				AA0000000000000000000001 /* MacchiatoApp.swift */,
+				AA0000000000000000000005 /* CaffeinateService.swift */,
 				AA0000000000000000000002 /* Assets.xcassets */,
 				AA0000000000000000000003 /* Info.plist */,
 			);
@@ -51,8 +75,17 @@
 			isa = PBXGroup;
 			children = (
 				AA0000000000000000000004 /* Macchiato.app */,
+				AA0000000000000000000007 /* MacchiatoTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CC0000000000000000000004 /* MacchiatoTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000006 /* CaffeinateServiceTests.swift */,
+			);
+			path = MacchiatoTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -75,6 +108,24 @@
 			productReference = AA0000000000000000000004 /* Macchiato.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EE0000000000000000000002 /* MacchiatoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 220000000000000000000003 /* Build configuration list for PBXNativeTarget "MacchiatoTests" */;
+			buildPhases = (
+				DD0000000000000000000004 /* Sources */,
+				DD0000000000000000000006 /* Frameworks */,
+				DD0000000000000000000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F10000000000000000000001 /* PBXTargetDependency */,
+			);
+			name = MacchiatoTests;
+			productName = MacchiatoTests;
+			productReference = AA0000000000000000000007 /* MacchiatoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -87,6 +138,10 @@
 				TargetAttributes = {
 					EE0000000000000000000001 = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					EE0000000000000000000002 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = EE0000000000000000000001;
 					};
 				};
 			};
@@ -104,6 +159,7 @@
 			projectRoot = "";
 			targets = (
 				EE0000000000000000000001 /* Macchiato */,
+				EE0000000000000000000002 /* MacchiatoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -117,6 +173,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DD0000000000000000000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -125,10 +188,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB0000000000000000000001 /* MacchiatoApp.swift in Sources */,
+				BB0000000000000000000003 /* CaffeinateService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD0000000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB0000000000000000000004 /* CaffeinateServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F10000000000000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE0000000000000000000001 /* Macchiato */;
+			targetProxy = F00000000000000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		110000000000000000000001 /* Debug */ = {
@@ -293,6 +373,40 @@
 			};
 			name = Release;
 		};
+		110000000000000000000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C4WH2VFRA8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matootie.MacchiatoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Macchiato.app/Contents/MacOS/Macchiato";
+			};
+			name = Debug;
+		};
+		110000000000000000000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C4WH2VFRA8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matootie.MacchiatoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Macchiato.app/Contents/MacOS/Macchiato";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -310,6 +424,15 @@
 			buildConfigurations = (
 				110000000000000000000003 /* Debug */,
 				110000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		220000000000000000000003 /* Build configuration list for PBXNativeTarget "MacchiatoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				110000000000000000000005 /* Debug */,
+				110000000000000000000006 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
