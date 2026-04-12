@@ -62,3 +62,6 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 build/
+.claude/
+.DS_Store
+
