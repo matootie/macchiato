@@ -1,0 +1,21 @@
+{
+    "name": "Macchiato",
+    "short_name": "Macchiato",
+    "description": "A lightweight macOS menu bar app that keeps your Mac awake with a single click. No terminal window required.",
+    "icons": [
+        {
+            "src": "android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "./",
+    "display": "browser",
+    "background_color": "#FAF8F5",
+    "theme_color": "#C4713A"
+}

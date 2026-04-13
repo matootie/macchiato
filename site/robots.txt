@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://macchiatoapp.com/sitemap.xml
