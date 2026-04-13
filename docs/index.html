@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macchiato — Keep your Mac awake</title>
+    <meta name="description" content="A lightweight macOS menu bar app that keeps your Mac awake with a single click. No terminal window required.">
+    <meta property="og:title" content="Macchiato — Keep your Mac awake">
+    <meta property="og:description" content="A lightweight macOS menu bar app that keeps your Mac awake with a single click. No terminal window required.">
+    <meta property="og:image" content="icon.png">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #FAF8F5;
+            --bg-card: #FFFFFF;
+            --text: #1C1410;
+            --text-muted: #8A7060;
+            --accent: #C4713A;
+            --accent-dark: #A35A25;
+            --accent-light: #F5E6D8;
+            --border: #EDE4DA;
+            --shadow: rgba(60, 30, 10, 0.08);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Nav */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 40px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(250, 248, 245, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: -0.3px;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-brand img {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.15s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 96px 40px 80px;
+            text-align: center;
+        }
+
+        .hero-icon {
+            width: 112px;
+            height: 112px;
+            border-radius: 24px;
+            margin: 0 auto 28px;
+            display: block;
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.06),
+                0 8px 28px rgba(196, 113, 58, 0.18);
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--accent-light);
+            color: var(--accent-dark);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 13px;
+            border-radius: 20px;
+            margin-bottom: 22px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+
+        .hero-eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 56px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.08;
+            margin-bottom: 18px;
+            color: var(--text);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 440px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 26px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+            box-shadow: 0 2px 14px rgba(196, 113, 58, 0.38);
+        }
+
+        .download-btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 22px rgba(196, 113, 58, 0.5);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(196, 113, 58, 0.3);
+        }
+
+        .download-btn svg {
+            width: 17px;
+            height: 17px;
+            flex-shrink: 0;
+        }
+
+        .version-note {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Divider */
+        .divider {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 40px;
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Features */
+        .features {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 72px 40px 80px;
+        }
+
+        .section-label {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 44px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 26px;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 4px 28px var(--shadow);
+            border-color: #DDD0C4;
+        }
+
+        .feature-emoji {
+            font-size: 26px;
+            margin-bottom: 14px;
+            display: block;
+            line-height: 1;
+        }
+
+        .feature-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 7px;
+            letter-spacing: -0.2px;
+            color: var(--text);
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* Requirements strip */
+        .requirements {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 40px;
+            text-align: center;
+        }
+
+        .requirements p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .requirements strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            padding: 28px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 64px 24px 60px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .features {
+                padding: 52px 24px 60px;
+            }
+
+            .requirements {
+                padding: 18px 24px;
+            }
+
+            footer {
+                padding: 24px 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="nav-brand">
+            <img src="icon.png" alt="Macchiato icon">
+            Macchiato
+        </a>
+        <ul class="nav-links">
+            <li><a href="https://github.com/matootie/macchiato">GitHub</a></li>
+            <li><a href="https://github.com/matootie/macchiato/releases">Releases</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <img src="icon.png" alt="Macchiato app icon" class="hero-icon">
+            <div class="hero-eyebrow">
+                <span class="hero-eyebrow-dot"></span>
+                macOS Menu Bar App
+            </div>
+            <h1>Keep your Mac<br>awake, effortlessly.</h1>
+            <p>Macchiato lives quietly in your menu bar and toggles caffeinate with a single click — no open terminal window required.</p>
+            <div class="cta-group">
+                <a href="https://github.com/matootie/macchiato/releases/download/v0.1.0/Macchiato-0.1.0.dmg" class="download-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v13M7 11l5 5 5-5"/>
+                        <path d="M3 17v2a2 2 0 002 2h14a2 2 0 002-2v-2"/>
+                    </svg>
+                    Download for Mac
+                </a>
+                <span class="version-note">Version 0.1.0 &middot; macOS 14 Sonoma or later</span>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <section class="features">
+            <p class="section-label">Features</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-emoji">☕</span>
+                    <h3>One-click toggle</h3>
+                    <p>Start or stop caffeinate instantly from the menu bar. The icon updates to reflect the current state at a glance.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-emoji">🪶</span>
+                    <h3>Zero footprint</h3>
+                    <p>No Dock icon, no floating windows. Macchiato stays completely out of your way until you need it.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-emoji">🚀</span>
+                    <h3>Launch at login</h3>
+                    <p>Opt in to have Macchiato start automatically when you log in so it's always ready when you need it.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="requirements">
+            <p><strong>System Requirements:</strong> macOS 14 Sonoma or later &middot; Apple Silicon or Intel</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Macchiato v0.1.0</p>
+        <p>
+            <a href="https://github.com/matootie/macchiato">View on GitHub</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/matootie/macchiato/releases">All releases</a>
+        </p>
+    </footer>
+
+</body>
+</html>
